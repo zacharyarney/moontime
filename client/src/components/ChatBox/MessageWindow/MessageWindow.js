@@ -1,15 +1,7 @@
 import React from 'react';
 
-type Message = {
-  id: number;
-  user: string;
-  timestamp: Date;
-  body: string;
-  channel?: number;
-}
-
 export const MessageWindow = () => {
-  const messages: Message[] = [
+  const messages = [
     {
       id: 1,
       user: 'User 1',
@@ -27,12 +19,14 @@ export const MessageWindow = () => {
       user: 'User 1',
       timestamp: new Date(),
       body: 'Indeed',
-    }
-  ]
+    },
+  ];
 
   return (
     <div>
-      {messages.map(msg => <li key={msg.id}>{msg.body}</li> )}
+      {messages.map((msg) => (
+        <li key={msg.id}>{msg.body}</li>
+      ))}
     </div>
-  )
-}
+  );
+};
