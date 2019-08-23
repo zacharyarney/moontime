@@ -1,31 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { endpoint } from '../../../util/socketStuff';
 
 export const MessageWindow = () => {
-  const messages = [
-    {
-      id: 1,
-      user: 'User 1',
-      timestamp: new Date(),
-      body: 'Hello this is message',
-    },
-    {
-      id: 2,
-      user: 'User 2',
-      timestamp: new Date(),
-      body: 'Hello this is also message',
-    },
-    {
-      id: 3,
-      user: 'User 1',
-      timestamp: new Date(),
-      body: 'Indeed',
-    },
-  ];
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    axios.get(endpoint).then((res) => {
+      console.log(res);
+      setMessages(res.data.messages);
+    });
+  }, []);
 
   return (
     <div>
       {messages.map((msg) => (
-        <li key={msg.id}>{msg.body}</li>
+        <li key={msg.id}>
+          {msg.user}: {msg.body}
+        </li>
       ))}
     </div>
   );
