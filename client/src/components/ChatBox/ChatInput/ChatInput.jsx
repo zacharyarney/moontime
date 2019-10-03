@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { socket } from '../../../util/socketStuff';
 
 export const ChatInput = () => {
   // This is hooks
@@ -6,7 +7,15 @@ export const ChatInput = () => {
 
   const handleInput = (e) => setValue(e.target.value);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    socket.emit('message', { value });
+    setValue('');
+  };
+
   return (
-    <input value={value} onChange={handleInput} />
-  )
-}
+    <form onSubmit={handleSubmit}>
+      <input value={value} onChange={handleInput} />
+    </form>
+  );
+};
