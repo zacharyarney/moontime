@@ -5,12 +5,14 @@ import { socket } from '../../util/socketStuff.js';
 
 export const ChatBox = () => {
   useEffect(() => {
-    socket.on('connection', () => {})
-  }, [])
+    socket.on('connection', (data) => {
+      console.log(data);
+    });
+  }, []);
   return (
     <div>
       <MessageWindow />
       <ChatInput />
     </div>
-  )
-}
+  );
+};
