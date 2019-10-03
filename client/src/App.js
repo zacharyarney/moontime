@@ -5,7 +5,6 @@ import { ChatBox } from './components/ChatBox/ChatBox';
 const App = () => {
   return (
     <div className="App">
-      App goes here
       <ChatBox />
     </div>
   );
