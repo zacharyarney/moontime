@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { endpoint, socket } from '../../../util/socketStuff';
 
-export const MessageWindow = () => {
+const MessageWindow = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -29,3 +29,5 @@ export const MessageWindow = () => {
     </div>
   );
 };
+
+export default MessageWindow;

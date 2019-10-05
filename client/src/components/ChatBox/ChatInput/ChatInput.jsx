@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { socket } from '../../../util/socketStuff';
 
-export const ChatInput = () => {
+const ChatInput = () => {
   // This is hooks
   const [value, setValue] = useState('');
 
@@ -22,3 +22,5 @@ export const ChatInput = () => {
     </form>
   );
 };
+
+export default ChatInput;
