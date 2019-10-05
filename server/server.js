@@ -11,26 +11,27 @@ const io = require('socket.io')(server);
 
 const users = [];
 const connections = [];
-const messages = [
-  {
-    id: 1,
-    user: 'User 1',
-    timestamp: Date.now(),
-    body: 'Hello this is message',
-  },
-  {
-    id: 2,
-    user: 'User 2',
-    timestamp: Date.now(),
-    body: 'Hello this is also message',
-  },
-  {
-    id: 3,
-    user: 'User 1',
-    timestamp: Date.now(),
-    body: 'Indeed',
-  },
-];
+const messages = [];
+let messageKey = 0;
+//   {
+//     id: 1,
+//     user: 'User 1',
+//     timestamp: Date.now(),
+//     body: 'Hello this is message',
+//   },
+//   {
+//     id: 2,
+//     user: 'User 2',
+//     timestamp: Date.now(),
+//     body: 'Hello this is also message',
+//   },
+//   {
+//     id: 3,
+//     user: 'User 1',
+//     timestamp: Date.now(),
+//     body: 'Indeed',
+//   },
+// ];
 
 app.get('/', (req, res) => {
   res.status(200).json({ messages });
@@ -38,10 +39,14 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('user connected wowee');
-  socket.emit('connection', { hello: 'world' });
+  socket.emit('connected', { hello: 'world' });
   socket.on('message', (data) => {
     console.log(data);
+    messageKey++;
+    data.id = messageKey;
+    messages.push(data);
     socket.emit('messages', data);
+    console.log('messages', messages);
   });
 });
 

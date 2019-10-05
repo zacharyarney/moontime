@@ -5,10 +5,12 @@ import { socket } from '../../util/socketStuff.js';
 
 export const ChatBox = () => {
   useEffect(() => {
-    socket.on('connection', (data) => {
-      console.log(data);
+    console.log('local', localStorage.getItem('userName'));
+    socket.on('connected', (data) => {
+      console.log('data', data);
     });
   }, []);
+
   return (
     <div>
       <MessageWindow />

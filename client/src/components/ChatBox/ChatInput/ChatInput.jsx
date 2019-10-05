@@ -9,13 +9,16 @@ export const ChatInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit('message', { value });
+    socket.emit('message', { 'user': socket.id, 'body': value });
     setValue('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={value} onChange={handleInput} />
+      <label>
+        {'Say something: '}
+        <input value={value} onChange={handleInput} />
+      </label>
     </form>
   );
 };
