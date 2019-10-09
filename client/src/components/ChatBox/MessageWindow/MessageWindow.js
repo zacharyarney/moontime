@@ -7,17 +7,14 @@ const MessageWindow = () => {
 
   useEffect(() => {
     axios.get(endpoint).then((res) => {
-      // console.log(res);
       setMessages(res.data.messages);
     });
-  }, []);
 
-  useEffect(() => {
-    socket.on('messages', (data) => {
-      setMessages([...messages, data]);
+    socket.on('receiveMessage', (msg) => {
+      // setMessages must be a functional update for this to work!
+      setMessages((prevMessages) => [...prevMessages, msg]);
     });
-    console.log(messages);
-  }, [messages]);
+  }, []);
 
   return (
     <div>
