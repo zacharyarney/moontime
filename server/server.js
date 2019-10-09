@@ -41,12 +41,13 @@ io.on('connection', (socket) => {
   console.log('user connected wowee');
   socket.emit('connected', { hello: 'world' });
   socket.on('message', (data) => {
-    console.log(data);
     messageKey++;
     data.id = messageKey;
     messages.push(data);
     socket.emit('messages', data);
     console.log('messages', messages);
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
 });
 
