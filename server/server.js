@@ -44,8 +44,8 @@ io.on('connection', (socket) => {
     messageKey++;
     data.id = messageKey;
     messages.push(data);
-    socket.emit('messages', data);
-    console.log('messages', messages);
+    io.emit('receiveMessage', data);
+  });
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
