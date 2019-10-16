@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { socket } from '../../../util/socketStuff';
 
-const ChatInput = () => {
+const ChatInput = (props) => {
   // This is hooks
   const [value, setValue] = useState('');
 
@@ -9,7 +9,7 @@ const ChatInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit('message', { 'user': socket.id, 'body': value });
+    socket.emit('message', { 'user': props.userName, 'body': value });
     setValue('');
   };
 

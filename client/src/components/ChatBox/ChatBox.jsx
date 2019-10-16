@@ -3,7 +3,7 @@ import ChatInput from './ChatInput/ChatInput';
 import MessageWindow from './MessageWindow/MessageWindow';
 import { socket } from '../../util/socketStuff.js';
 
-const ChatBox = () => {
+const ChatBox = (props) => {
   useEffect(() => {
     console.log('local', localStorage.getItem('userName'));
     socket.on('connected', (data) => {
@@ -14,7 +14,7 @@ const ChatBox = () => {
   return (
     <div>
       <MessageWindow />
-      <ChatInput />
+      <ChatInput {...props} />
     </div>
   );
 };
